@@ -687,3 +687,47 @@ a:hover { color: var(--accent-hover); }
     .pricing { grid-template-columns: 1fr; }
     .tier-featured::before { font-size: 0.66rem; padding: 4px 11px; }
 }
+
+/* ---- AUDIT SWITCHER (links between pages) ---- */
+.audit-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+.audit-pill {
+    flex: 1 1 auto;
+    min-width: 200px;
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+.audit-pill:hover {
+    color: var(--text);
+    background: var(--bg-alt);
+}
+.audit-pill.active {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .audit-switcher { padding: 6px; gap: 6px; }
+    .audit-pill { min-width: 0; flex: 1 1 100%; padding: 12px 12px; font-size: 0.85rem; gap: 8px; }
+}

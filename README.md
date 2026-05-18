@@ -1,30 +1,46 @@
 # audit.chimitdorzhi.tech
 
-Лендинг услуги «Аудит сайта по 152-ФЗ и устранение нарушений».
+Лендинги услуг **аудита сайта** — 3 отдельные страницы для лучшего SEO.
+
+## Структура
+
+- `/` — **152-ФЗ аудит** (основная) — главная посадочная
+- `/security/` — **Аудит безопасности** (pentest, защита от взлома)
+- `/legal/` — **Юридический аудит** (оферта, политика, реклама)
+
+Между страницами — переключатель в hero с активным состоянием.
+
+## Архитектура
+
+Все 3 страницы генерируются из единого источника:
+
+```
+tools/pages-data.js — данные (контент, тарифы, чек-листы)
+tools/build.js      — генератор (общий HTML-шаблон)
+```
+
+**Перегенерация:** `node tools/build.js` — пересоздаёт `index.html`, `security/index.html`, `legal/index.html` + `sitemap.xml`.
+
+## Тарифы (все «от …»)
+
+| Услуга | Light | Standard | Pro |
+|--------|-------|----------|-----|
+| 152-ФЗ | 5 000 ₽ | 30 000 ₽ | 80 000 ₽ |
+| Безопасность | 15 000 ₽ | 60 000 ₽ | 150 000 ₽ |
+| Юридический | 10 000 ₽ | 30 000 ₽ | 60 000 ₽ |
+
+При заказе 2 аудитов — скидка 10%, при заказе всех 3 — скидка 20%.
+
+## SEO
+
+- Уникальные `<title>`, meta description, canonical для каждой страницы
+- Schema.org Service + FAQPage на каждой странице
+- sitemap.xml со всеми 3 URL
+- Открытое содержимое (без JS-табов) — лучше для индексации
+- Кросс-перелинковка через audit-switcher
 
 ## Деплой
 
 GitHub Pages from `main` branch (root). Кастомный домен: `audit.chimitdorzhi.tech` (CNAME).
 
-## Структура
-
-- `index.html` — одностраничный лендинг (hero → боль → чек-лист → этапы → тарифы → FAQ → CTA → футер)
-- `style.css` — стили (тёмная тема под основной сайт chimitdorzhi.tech)
-- `favicon.svg` — иконка «152»
-- `CNAME` — `audit.chimitdorzhi.tech`
-- `sitemap.xml`, `robots.txt`
-
-## DNS
-
-На стороне reg.ru добавить CNAME:
-```
-audit.chimitdorzhi.tech → chimitdorzhi-studio-web.github.io
-```
-
-GitHub Pages → выдаст Let's Encrypt cert автоматически.
-
-## Тарифы
-
-- Аудит — от 5 000 ₽
-- Аудит + Фикс — от 30 000 ₽
-- Под ключ — от 80 000 ₽
+DNS на reg.ru: CNAME `audit` → `chimitdorzhi-studio-web.github.io.`
