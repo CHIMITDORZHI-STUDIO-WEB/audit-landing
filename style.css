@@ -731,3 +731,50 @@ a:hover { color: var(--accent-hover); }
     .audit-switcher { padding: 6px; gap: 6px; }
     .audit-pill { min-width: 0; flex: 1 1 100%; padding: 12px 12px; font-size: 0.85rem; gap: 8px; }
 }
+
+/* ---- COOKIE BANNER (152-ФЗ active opt-in) ---- */
+.cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 420px;
+    max-width: calc(100vw - 32px);
+    padding: 22px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(24px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cookie-banner.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.cookie-inner { display: flex; flex-direction: column; gap: 14px; }
+.cookie-header { display: flex; align-items: center; gap: 10px; }
+.cookie-icon { font-size: 1.4rem; }
+.cookie-banner h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.cookie-text { font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.55; }
+.cookie-text a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.cookie-text a:hover { text-decoration: underline; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cookie-btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.cookie-btn-primary { background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: #fff; flex: 1 1 auto; min-width: 140px; }
+.cookie-btn-primary:hover { transform: translateY(-1px); }
+.cookie-btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.cookie-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 600px) {
+    .cookie-banner { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 18px; }
+    .cookie-btn-primary { flex: 1 1 100%; }
+}

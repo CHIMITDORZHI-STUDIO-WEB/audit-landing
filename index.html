@@ -363,6 +363,72 @@
     </footer>
 
     <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent float-cta">Написать в Telegram →</a>
+
+    <!-- Cookie consent (152-ФЗ active opt-in) -->
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
+        <div class="cookie-inner">
+            <div class="cookie-header">
+                <span class="cookie-icon">🍪</span>
+                <h3>Мы используем cookie</h3>
+            </div>
+            <p class="cookie-text">Сайт использует cookie. Необходимые работают всегда — они нужны для интерфейса. Аналитика помогает улучшать сайт и включается только с вашего согласия. Подробнее — в <a href="https://chimitdorzhi.tech/privacy_policy.html" target="_blank" rel="noopener">политике</a>.</p>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-primary" id="cookieAcceptAll">Принять всё</button>
+                <button class="cookie-btn cookie-btn-ghost" id="cookieEssentialOnly">Только необходимые</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yandex.Metrika (lazy, gated by analytics consent) -->
+    <script>
+        (function () {
+            function loadYM() {
+                if (window.__ymLoaded) return;
+                window.__ymLoaded = true;
+                (function (m, e, t, r, i, k, a) {
+                    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+                    m[i].l = 1 * new Date();
+                    for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+                    k = e.createElement(t); a = e.getElementsByTagName(t)[0]; k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+                })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=109281884', 'ym');
+                ym(109281884, 'init', { ssr: true, webvisor: true, clickmap: true, accurateTrackBounce: true, trackLinks: true });
+            }
+            try {
+                var c = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
+                if (c.analytics) loadYM();
+            } catch (e) {}
+            window.addEventListener('cookieConsent', function (e) {
+                if (e.detail && e.detail.analytics) loadYM();
+            });
+        })();
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109281884" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <!-- Cookie consent logic (simplified — 2 buttons) -->
+    <script>
+        (function () {
+            var CONSENT_VERSION = 1;
+            var banner = document.getElementById('cookieBanner');
+            if (!banner) return;
+            function save(consent) {
+                consent.version = CONSENT_VERSION;
+                consent.timestamp = new Date().toISOString();
+                try { localStorage.setItem('cookieConsent', JSON.stringify(consent)); } catch (e) {}
+                window.dispatchEvent(new CustomEvent('cookieConsent', { detail: consent }));
+                banner.classList.remove('active');
+            }
+            var stored;
+            try { stored = JSON.parse(localStorage.getItem('cookieConsent')); } catch (e) {}
+            if (stored && stored.version === CONSENT_VERSION) return;
+            setTimeout(function () { banner.classList.add('active'); }, 800);
+            document.getElementById('cookieAcceptAll').addEventListener('click', function () {
+                save({ essential: true, analytics: true });
+            });
+            document.getElementById('cookieEssentialOnly').addEventListener('click', function () {
+                save({ essential: true, analytics: false });
+            });
+        })();
+    </script>
 </body>
 
 </html>
