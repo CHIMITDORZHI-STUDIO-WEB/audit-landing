@@ -71,6 +71,15 @@ function statsHtml(stats) {
   ).join('\n');
 }
 
+function statsCardHtml(stats) {
+  return stats.map(s =>
+    `            <div class="hero-stats-card-item">
+                <div class="hero-stats-card-num">${esc(s.num)}</div>
+                <div class="hero-stats-card-label">${esc(s.label)}</div>
+            </div>`
+  ).join('\n');
+}
+
 function serviceSchema(p) {
   const offers = p.schemaOffers.map(o =>
     `        {"@type": "Offer", "name": "${esc(p.label)} — ${esc(o.name)}", "price": "${o.price}", "priceCurrency": "RUB", "description": "${o.description}"}`
@@ -236,16 +245,21 @@ ${COMMON_FAQ_SCHEMA}
 
     <!-- HERO + AUDIT SWITCHER -->
     <section class="tabs-section">
-        <div class="container">
-            <div class="hero-eyebrow">${esc(p.heroEyebrow)}</div>
-            <h1 style="font-size:clamp(1.8rem,5vw,3.5rem);margin-bottom:18px;letter-spacing:-1.5px;line-height:1.1;">
-                ${p.h1Html}
-            </h1>
-            <p style="font-size:clamp(1rem,1.6vw,1.25rem);color:var(--text-secondary);max-width:740px;line-height:1.55;margin-bottom:32px;">
-                ${esc(p.heroSubtitle)}
-            </p>
+        <div class="container hero-grid">
+            <div class="hero-grid-main">
+                <div class="hero-eyebrow">${esc(p.heroEyebrow)}</div>
+                <h1 style="font-size:clamp(1.8rem,5vw,3.5rem);margin-bottom:18px;letter-spacing:-1.5px;line-height:1.1;">
+                    ${p.h1Html}
+                </h1>
+                <p style="font-size:clamp(1rem,1.6vw,1.25rem);color:var(--text-secondary);max-width:740px;line-height:1.55;margin-bottom:32px;">
+                    ${esc(p.heroSubtitle)}
+                </p>
 
 ${navSwitcher(key)}
+            </div>
+            <aside class="hero-stats-card" aria-label="Ключевые цифры">
+${statsCardHtml(p.heroStats)}
+            </aside>
         </div>
     </section>
 
@@ -257,12 +271,9 @@ ${navSwitcher(key)}
             <div class="simple">
                 <strong>Простыми словами:</strong> ${p.simpleExplainer}
             </div>
-            <div class="hero-actions" style="margin-bottom:50px;">
+            <div class="hero-actions" style="margin-bottom:0;">
                 <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent btn-big">Написать в Telegram →</a>
                 <a href="#pricing" class="btn btn-ghost btn-big">Тарифы</a>
-            </div>
-            <div class="hero-stats">
-${statsHtml(p.heroStats)}
             </div>
         </div>
     </section>
