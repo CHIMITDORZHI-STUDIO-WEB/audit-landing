@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://audit.chimitdorzhi.tech/sitemap.xml
+Host: https://audit.chimitdorzhi.tech
