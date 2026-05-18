@@ -535,3 +535,71 @@ a:hover { color: var(--accent-hover); }
     body { padding-bottom: 80px; }
     .cta-block { padding: 48px 20px; border-radius: 22px; }
 }
+
+/* ---- TABS ---- */
+.tabs-section {
+    padding-top: 130px;
+    padding-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+.tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    margin-bottom: 0;
+}
+.tab-btn {
+    flex: 1 1 auto;
+    min-width: 200px;
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.tab-btn:hover {
+    color: var(--text);
+    background: var(--bg-alt);
+}
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+}
+.tab-btn-icon {
+    font-size: 1.1rem;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* simple explainer block */
+.simple {
+    margin: 18px 0 36px;
+    padding: 20px 24px;
+    background: rgba(79, 140, 255, 0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: var(--text);
+}
+.simple strong { color: var(--accent); }
+
+@media (max-width: 600px) {
+    .tab-btn { min-width: unset; flex: 1 1 calc(50% - 4px); padding: 12px 10px; font-size: 0.82rem; }
+    .tabs-section { padding-top: 110px; }
+}
