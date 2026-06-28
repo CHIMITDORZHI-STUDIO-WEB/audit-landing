@@ -2,32 +2,44 @@
    audit.chimitdorzhi.tech — landing page
    =========================================== */
 
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+    src: url('https://chimitdorzhi.tech/assets/fonts/manrope-cyrillic.woff2') format('woff2');
+}
+
+/* Палитра под главную chimitdorzhi.tech — кремово-кобальтовый минимализм */
 :root {
-    --bg: #0a0a0a;
-    --bg-alt: #111111;
-    --bg-card: #161616;
-    --bg-card-hover: #1e1e1e;
-    --text: #f5f5f5;
-    --text-secondary: #a0a0a0;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.15);
-    --accent: #4f8cff;
-    --accent-hover: #6ea1ff;
-    --gradient-1: #4f8cff;
-    --gradient-2: #a855f7;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-    --success: #10b981;
-    --glass-bg: rgba(22, 22, 22, 0.7);
+    --bg: #f4f1ea;
+    --bg-alt: #ece8df;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f6f3ec;
+    --text: #16130f;
+    --text-secondary: #6b655c;
+    --border: rgba(20, 16, 12, 0.14);
+    --border-hover: rgba(20, 16, 12, 0.30);
+    --accent: #1e4fd6;
+    --accent-hover: #1740b5;
+    --accent-glow: rgba(30, 79, 214, 0.16);
+    --gradient-1: #1e4fd6;
+    --gradient-2: #1740b5;
+    --danger: #d63a3a;
+    --warning: #c47d12;
+    --success: #1a9c6a;
+    --glass-bg: rgba(244, 241, 234, 0.82);
+    --shadow: 0 10px 36px rgba(20, 30, 60, 0.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
@@ -50,7 +62,7 @@ a:hover { color: var(--accent-hover); }
     border-radius: 50%;
     pointer-events: none;
     filter: blur(120px);
-    opacity: 0.15;
+    opacity: 0.06;
     z-index: 0;
 }
 .glow-1 { width: 600px; height: 600px; top: -10%; left: 20%; background: var(--gradient-1); }
@@ -120,7 +132,7 @@ a:hover { color: var(--accent-hover); }
     color: #fff;
     box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
 }
-.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(79, 140, 255, 0.4); color: #fff; }
+.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--accent-glow); color: #fff; }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 .btn-big { padding: 18px 36px; font-size: 1.05rem; }
@@ -227,21 +239,20 @@ a:hover { color: var(--accent-hover); }
 }
 .hero-grid-main { min-width: 0; }
 .hero-stats-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 24px;
 }
 .hero-stats-card-item {
     padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border);
 }
 .hero-stats-card-item:first-child {
     padding-top: 0;
@@ -280,8 +291,8 @@ a:hover { color: var(--accent-hover); }
         padding-top: 0;
         border-top: none;
         padding: 14px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
         border-radius: 12px;
     }
     .hero-stats-card-num { font-size: 1.5rem; }
@@ -824,7 +835,7 @@ a:hover { color: var(--accent-hover); }
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 18px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 60px rgba(20, 30, 60, 0.15);
     z-index: 10000;
     opacity: 0;
     transform: translateY(24px);
@@ -858,4 +869,15 @@ a:hover { color: var(--accent-hover); }
 @media (max-width: 600px) {
     .cookie-banner { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 18px; }
     .cookie-btn-primary { flex: 1 1 100%; }
+}
+
+/* Мультиканальные контакты (выбор канала) */
+.contact-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 10px 0 6px; }
+.contact-buttons .contact-btn { min-width: 150px; justify-content: center; }
+.contact-btn.contact-max:hover  { border-color: #7a5cff; color: #a48cff; }
+.contact-btn.contact-vk:hover   { border-color: #2787f5; color: #5aa6ff; }
+.contact-btn.contact-email:hover{ border-color: #34d399; color: #5ee0b0; }
+@media (max-width: 600px) {
+  .contact-buttons { flex-direction: column; align-items: stretch; }
+  .contact-buttons .contact-btn { width: 100%; }
 }

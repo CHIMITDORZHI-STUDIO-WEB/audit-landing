@@ -17,6 +17,27 @@ const ICONS = {
 
 const ORDER = ['fz152', 'security', 'legal'];
 
+// Каналы связи — лид пишет, куда удобно. goal = идентификатор цели в Яндекс.Метрике.
+const CONTACTS = {
+  tg:    { href: 'https://t.me/chimitdorzhi', label: 'Telegram', goal: 'lead_tg' },
+  max:   { href: 'https://max.ru/u/f9LHodD0cOLsid6YR1sWYPloKg45H6ncCJxPbNRIlxJ3Nkv5N32hLoVM9W4', label: 'MAX', goal: 'lead_max' },
+  vk:    { href: 'https://vk.com/chimitdorzhi', label: 'ВКонтакте', goal: 'lead_vk' },
+  email: { href: 'mailto:chimitdorzhi26@gmail.com', label: 'Email', goal: 'lead_email' },
+  phone: { href: 'tel:+79316053007', label: '+7 931 605-30-07', goal: 'lead_phone' },
+};
+const ymGoal = (goal) => `onclick="if(window.ym)ym(109281884,'reachGoal','${goal}')"`;
+
+// Мультиканальный ряд кнопок (Telegram приоритетная, остальные — равнозначные).
+function contactButtons() {
+  const c = CONTACTS;
+  return `<div class="contact-buttons">
+                <a href="${c.tg.href}" target="_blank" rel="noopener" class="btn btn-accent btn-big contact-btn contact-tg" ${ymGoal(c.tg.goal)}>Telegram</a>
+                <a href="${c.max.href}" target="_blank" rel="noopener" class="btn btn-ghost btn-big contact-btn contact-max" ${ymGoal(c.max.goal)}>MAX</a>
+                <a href="${c.vk.href}" target="_blank" rel="noopener" class="btn btn-ghost btn-big contact-btn contact-vk" ${ymGoal(c.vk.goal)}>ВКонтакте</a>
+                <a href="${c.email.href}" class="btn btn-ghost btn-big contact-btn contact-email" ${ymGoal(c.email.goal)}>Email</a>
+            </div>`;
+}
+
 function navSwitcher(activeKey) {
   return `<nav class="audit-switcher" aria-label="Виды аудита">
 ${ORDER.map((key) => {
@@ -60,7 +81,7 @@ function tiersHtml(tiers) {
         <ul class="tier-features">
 ${features}
         </ul>
-        <div class="tier-cta"><a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="${btnClass}">${esc(t.cta)}</a></div>
+        <div class="tier-cta"><a href="#contact" class="${btnClass}">${esc(t.cta)}</a></div>
     </div>`;
   }).join('\n');
 }
@@ -159,7 +180,7 @@ const COMMON_FAQ_HTML = `        <div class="faq">
 const COMMON_STEPS = `        <div class="steps">
             <div class="step">
                 <h3>Бриф</h3>
-                <p>15 минут в Telegram. Расскажете про сайт, кто клиенты, какие формы и платежи есть. Сразу скажу что вижу.</p>
+                <p>15 минут в мессенджере (Telegram, MAX, ВКонтакте) или по телефону. Расскажете про сайт, кто клиенты, какие формы и платежи есть. Сразу скажу что вижу.</p>
             </div>
             <div class="step">
                 <h3>Аудит</h3>
@@ -194,7 +215,7 @@ function renderPage(key) {
     <meta name="keywords" content="${esc(p.metaKeywords)}">
     <meta name="author" content="Дарижапов Чимитдоржи">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#f4f1ea">
 
     <link rel="canonical" href="${p.canonical}">
 
@@ -236,8 +257,8 @@ ${COMMON_FAQ_SCHEMA}
     <nav class="navbar">
         <div class="container nav-inner">
             <a href="/" class="logo">
-                <span>CHIMITDORZHI</span>
-                <span class="logo-badge">АУДИТ</span>
+                <span>chimitdorzhi</span>
+                <span class="logo-badge">аудит</span>
             </a>
             <a href="https://chimitdorzhi.tech" class="nav-back">← Все услуги</a>
         </div>
@@ -272,7 +293,7 @@ ${statsCardHtml(p.heroStats)}
                 <strong>Простыми словами:</strong> ${p.simpleExplainer}
             </div>
             <div class="hero-actions" style="margin-bottom:0;">
-                <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent btn-big">Написать в Telegram →</a>
+                <a href="#contact" class="btn btn-accent btn-big">Написать мне →</a>
                 <a href="#pricing" class="btn btn-ghost btn-big">Тарифы</a>
             </div>
         </div>
@@ -316,7 +337,7 @@ ${tiersHtml(p.tiers)}
         <div class="container">
             <span class="section-label">Как работаем</span>
             <h2>4 простых этапа</h2>
-            <p class="section-sub">Для любого из 3 аудитов процесс одинаковый. Никакого формализма и бумажек — всё в Telegram и по email.</p>
+            <p class="section-sub">Для любого из 3 аудитов процесс одинаковый. Никакого формализма и бумажек — всё в мессенджере и по email.</p>
 ${COMMON_STEPS}
         </div>
     </section>
@@ -325,17 +346,20 @@ ${COMMON_STEPS}
         <div class="container">
             <span class="section-label">Частые вопросы</span>
             <h2>FAQ</h2>
-            <p class="section-sub" style="margin-bottom: 32px;">Не нашли ответа — спросите в <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener">Telegram</a>.</p>
+            <p class="section-sub" style="margin-bottom: 32px;">Не нашли ответа — <a href="#contact">напишите мне</a> в любой мессенджер.</p>
 ${COMMON_FAQ_HTML}
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="contact">
         <div class="container">
             <div class="cta-block">
-                <h2>Не знаете с чего начать?</h2>
-                <p>Напишите в Telegram. За 15 минут разберёмся какой аудит вам сейчас актуальнее, и какой тариф подойдёт. Это бесплатно и без обязательств.</p>
-                <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent btn-big">Написать в Telegram →</a>
+                <h2>Напишите мне — отвечаю лично</h2>
+                <p>За 15 минут разберёмся, какой аудит вам сейчас актуальнее и какой тариф подойдёт. Бесплатно и без обязательств. Пишите, куда удобно — обычно отвечаю в течение часа.</p>
+                ${contactButtons()}
+                <p style="font-size:0.9rem;color:var(--text-secondary);margin-top:18px;">
+                    или по телефону <a href="${CONTACTS.phone.href}" ${ymGoal(CONTACTS.phone.goal)}>${esc(CONTACTS.phone.label)}</a>
+                </p>
                 <p style="font-size:0.82rem;color:var(--text-secondary);margin-top:22px;max-width:560px;">
                     * Цены «от» — финальная стоимость зависит от размера сайта, сложности и срочности. Уточняем после брифа. Информация не является публичной офертой.
                 </p>
@@ -347,9 +371,11 @@ ${COMMON_FAQ_HTML}
         <div class="container">
             <p><a href="https://chimitdorzhi.tech">← Все услуги на chimitdorzhi.tech</a></p>
             <p>
-                <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener">Telegram</a> ·
-                <a href="mailto:chimitdorzhi26@gmail.com">chimitdorzhi26@gmail.com</a> ·
-                <a href="tel:+79316053007">+7 (931) 605-30-07</a>
+                <a href="${CONTACTS.tg.href}" target="_blank" rel="noopener" ${ymGoal(CONTACTS.tg.goal)}>Telegram</a> ·
+                <a href="${CONTACTS.max.href}" target="_blank" rel="noopener" ${ymGoal(CONTACTS.max.goal)}>MAX</a> ·
+                <a href="${CONTACTS.vk.href}" target="_blank" rel="noopener" ${ymGoal(CONTACTS.vk.goal)}>ВКонтакте</a> ·
+                <a href="mailto:chimitdorzhi26@gmail.com" ${ymGoal(CONTACTS.email.goal)}>chimitdorzhi26@gmail.com</a> ·
+                <a href="tel:+79316053007" ${ymGoal(CONTACTS.phone.goal)}>+7 (931) 605-30-07</a>
             </p>
             <div class="legal">
                 <p>ИП Дарижапова Рыгзема Баировна · ИНН 031101842043 · ОГРНИП 326750000005553</p>
@@ -363,7 +389,7 @@ ${COMMON_FAQ_HTML}
         </div>
     </footer>
 
-    <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent float-cta">Написать в Telegram →</a>
+    <a href="#contact" class="btn btn-accent float-cta">Написать мне →</a>
 
     <!-- Cookie consent (152-ФЗ active opt-in) -->
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
