@@ -913,7 +913,13 @@ a:hover { color: var(--accent-hover); }
 .expert-points li { position: relative; padding-left: 26px; color: var(--text); font-size: 0.95rem; }
 .expert-points li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
 .expert-note { font-size: 0.85rem; font-style: italic; }
-@media (max-width: 700px) { .expert { grid-template-columns: 1fr; padding: 24px; } .expert-photo { width: 150px; height: 190px; } }
+@media (max-width: 700px) {
+  .expert { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+  .expert-photo { width: 180px; height: 230px; margin: 0 auto; }
+  .expert-body > p, .expert-note { text-align: left; }
+  .expert-points { text-align: left; max-width: 360px; margin: 0 auto 14px; }
+  .expert-links { text-align: left; }
+}
 
 /* Калькулятор риска штрафа */
 .calc { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }

@@ -511,7 +511,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=11">
+    <link rel="stylesheet" href="/style.css?v=12">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
