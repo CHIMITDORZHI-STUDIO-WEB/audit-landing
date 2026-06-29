@@ -28,7 +28,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=6">
+    <link rel="stylesheet" href="/style.css?v=7">
 
     <script type="application/ld+json">
     {
@@ -406,8 +406,15 @@
     <section class="section" id="contact">
         <div class="container">
             <div class="cta-block">
-                <h2>Напишите мне — отвечаю лично</h2>
-                <p>За 15 минут разберёмся, какой аудит вам сейчас актуальнее и какой тариф подойдёт. Бесплатно и без обязательств. Пишите, куда удобно — обычно отвечаю в течение часа.</p>
+                <h2>Получите бесплатный экспресс-аудит</h2>
+                <p>Оставьте адрес сайта и контакт — пришлю 3 главных риска по 152-ФЗ в течение 12 часов. Бесплатно, без обязательств.</p>
+                <form class="lead-form" id="leadForm" novalidate>
+                    <input type="url" name="site" class="lead-input" placeholder="Адрес вашего сайта (https://...)" required>
+                    <input type="text" name="contact" class="lead-input" placeholder="Как связаться: Telegram, телефон или email" required>
+                    <button type="submit" class="btn btn-accent btn-big lead-submit">Получить 3 риска бесплатно →</button>
+                    <p class="lead-status" id="leadStatus" role="status"></p>
+                </form>
+                <p class="contact-or">или напишите мне напрямую:</p>
                 <div class="contact-buttons">
                 <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" class="btn btn-accent btn-big contact-btn contact-tg" onclick="if(window.ym)ym(109281884,'reachGoal','lead_tg')">Telegram</a>
                 <a href="https://max.ru/u/f9LHodD0cOLsid6YR1sWYPloKg45H6ncCJxPbNRIlxJ3Nkv5N32hLoVM9W4" target="_blank" rel="noopener" class="btn btn-ghost btn-big contact-btn contact-max" onclick="if(window.ym)ym(109281884,'reachGoal','lead_max')">MAX</a>
@@ -539,6 +546,28 @@
             res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             if(window.ym) ym(109281884, 'reachGoal', 'calc_done');
         }
+    })();
+    </script>
+    <script>
+    (function(){
+        var f = document.getElementById('leadForm');
+        if(!f) return;
+        var status = document.getElementById('leadStatus');
+        f.addEventListener('submit', function(e){
+            e.preventDefault();
+            var site = f.site.value.trim(), contact = f.contact.value.trim();
+            if(!site || !contact){ status.textContent = 'Заполните оба поля.'; status.className = 'lead-status err'; return; }
+            var btn = f.querySelector('.lead-submit');
+            btn.disabled = true; status.textContent = 'Отправляю...'; status.className = 'lead-status';
+            var text = 'Новая заявка — ' + location.host + location.pathname + String.fromCharCode(10) + 'Сайт: ' + site + String.fromCharCode(10) + 'Контакт: ' + contact;
+            fetch('https://api.telegram.org/bot8672193242:AAHz2EQqGI2RMNxl-6YS-LI8QV0E8icKfTY/sendMessage', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: '1703001728', text: text })
+            }).then(function(r){ return r.json(); }).then(function(d){
+                if(d.ok){ status.textContent = 'Заявка отправлена. Свяжусь с вами в течение 12 часов.'; status.className = 'lead-status ok'; f.reset(); if(window.ym) ym(109281884, 'reachGoal', 'lead_form'); }
+                else { throw new Error('tg'); }
+            }).catch(function(){ status.textContent = 'Не отправилось. Напишите мне в мессенджер кнопкой ниже.'; status.className = 'lead-status err'; btn.disabled = false; });
+        });
     })();
     </script>
 </body>

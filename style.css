@@ -941,3 +941,14 @@ a:hover { color: var(--accent-hover); }
 .footer-audits a { color: var(--text-secondary); }
 .footer-audits a:hover { color: var(--accent); }
 .cookie-icon { display: inline-flex; color: var(--accent); }
+
+/* Лид-форма */
+.lead-form { display: flex; flex-direction: column; gap: 12px; max-width: 480px; margin: 0 auto 6px; text-align: left; }
+.lead-input { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; font-size: 0.95rem; width: 100%; }
+.lead-input::placeholder { color: var(--text-secondary); }
+.lead-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.lead-submit { width: 100%; justify-content: center; }
+.lead-status { font-size: 0.88rem; min-height: 1.1em; margin: 2px 0 0; }
+.lead-status.ok { color: var(--success); }
+.lead-status.err { color: var(--danger); }
+.contact-or { font-size: 0.9rem; color: var(--text-secondary); margin: 18px 0 12px; }

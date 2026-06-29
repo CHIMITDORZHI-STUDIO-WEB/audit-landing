@@ -316,6 +316,39 @@ const CALC_SCRIPT = `    <script>
     })();
     </script>`;
 
+// --- Лид-форма → Telegram-бот (отдельный бот, токен в клиенте, риск принят) ---
+const LEAD_TOKEN = '8672193242:AAHz2EQqGI2RMNxl-6YS-LI8QV0E8icKfTY';
+const LEAD_CHAT = '1703001728';
+const FORM_HTML = `                <form class="lead-form" id="leadForm" novalidate>
+                    <input type="url" name="site" class="lead-input" placeholder="Адрес вашего сайта (https://...)" required>
+                    <input type="text" name="contact" class="lead-input" placeholder="Как связаться: Telegram, телефон или email" required>
+                    <button type="submit" class="btn btn-accent btn-big lead-submit">Получить 3 риска бесплатно →</button>
+                    <p class="lead-status" id="leadStatus" role="status"></p>
+                </form>
+                <p class="contact-or">или напишите мне напрямую:</p>`;
+const FORM_SCRIPT = `    <script>
+    (function(){
+        var f = document.getElementById('leadForm');
+        if(!f) return;
+        var status = document.getElementById('leadStatus');
+        f.addEventListener('submit', function(e){
+            e.preventDefault();
+            var site = f.site.value.trim(), contact = f.contact.value.trim();
+            if(!site || !contact){ status.textContent = 'Заполните оба поля.'; status.className = 'lead-status err'; return; }
+            var btn = f.querySelector('.lead-submit');
+            btn.disabled = true; status.textContent = 'Отправляю...'; status.className = 'lead-status';
+            var text = 'Новая заявка — ' + location.host + location.pathname + String.fromCharCode(10) + 'Сайт: ' + site + String.fromCharCode(10) + 'Контакт: ' + contact;
+            fetch('https://api.telegram.org/bot${LEAD_TOKEN}/sendMessage', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: '${LEAD_CHAT}', text: text })
+            }).then(function(r){ return r.json(); }).then(function(d){
+                if(d.ok){ status.textContent = 'Заявка отправлена. Свяжусь с вами в течение 12 часов.'; status.className = 'lead-status ok'; f.reset(); if(window.ym) ym(109281884, 'reachGoal', 'lead_form'); }
+                else { throw new Error('tg'); }
+            }).catch(function(){ status.textContent = 'Не отправилось. Напишите мне в мессенджер кнопкой ниже.'; status.className = 'lead-status err'; btn.disabled = false; });
+        });
+    })();
+    </script>`;
+
 function renderPage(key) {
   const p = pages[key];
   // Path to /style.css etc.: from index.html → 'style.css', from /security/index.html → '../style.css'
@@ -353,7 +386,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=6">
+    <link rel="stylesheet" href="/style.css?v=7">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
@@ -473,8 +506,9 @@ ${COMMON_FAQ_HTML}
     <section class="section" id="contact">
         <div class="container">
             <div class="cta-block">
-                <h2>Напишите мне — отвечаю лично</h2>
-                <p>За 15 минут разберёмся, какой аудит вам сейчас актуальнее и какой тариф подойдёт. Бесплатно и без обязательств. Пишите, куда удобно — обычно отвечаю в течение часа.</p>
+                <h2>Получите бесплатный экспресс-аудит</h2>
+                <p>Оставьте адрес сайта и контакт — пришлю 3 главных риска по 152-ФЗ в течение 12 часов. Бесплатно, без обязательств.</p>
+${FORM_HTML}
                 ${contactButtons()}
                 <p style="font-size:0.9rem;color:var(--text-secondary);margin-top:18px;">
                     или по телефону <a href="${CONTACTS.phone.href}" ${ymGoal(CONTACTS.phone.goal)}>${esc(CONTACTS.phone.label)}</a>
@@ -565,6 +599,7 @@ ${COMMON_FAQ_HTML}
         })();
     </script>
 ${key === 'fz152' ? CALC_SCRIPT : ''}
+${FORM_SCRIPT}
 </body>
 
 </html>
