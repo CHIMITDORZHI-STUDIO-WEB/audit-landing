@@ -388,7 +388,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Рассылки и напоминания в мессенджерах без согласия</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">Фитнес-клубы и спортшколы</div>
                     <ul>
                         <li>Вход по лицу или отпечатку — это биометрия: нужны ЕБС и отдельное согласие</li>
@@ -396,7 +396,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Абонементы и заморозки хранят ПД без основания и сроков</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">Туризм: турагентства и отели</div>
                     <ul>
                         <li>Сканы паспортов лежат в почте и мессенджерах без защиты</li>
@@ -404,7 +404,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Рассылки горящих туров без согласия на рекламу</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">Недвижимость: агентства и застройщики</div>
                     <ul>
                         <li>Паспорта и копии документов уходят в банк под ипотеку без оформления</li>
@@ -412,7 +412,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Базы клиентов в Excel и CRM без защиты и сроков хранения</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">HR, рекрутинг, подбор персонала</div>
                     <ul>
                         <li>Резюме соискателей — масса ПД, часто без согласия на обработку</li>
@@ -420,7 +420,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Передача анкет заказчику без оформления поручения</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">Автошколы и автосервисы</div>
                     <ul>
                         <li>Данные учеников передаются в ГИБДД без корректного основания</li>
@@ -428,7 +428,7 @@ const NICHE_HTML = `    <section class="section">
                         <li>Нет уведомления в реестр операторов РКН</li>
                     </ul>
                 </div>
-                <div class="niche-card">
+                <div class="niche-card niche-extra">
                     <div class="niche-title">ЖКХ: УК, ТСЖ и СНТ</div>
                     <ul>
                         <li>Публикация списков должников с ФИО и адресами — частое нарушение</li>
@@ -437,7 +437,9 @@ const NICHE_HTML = `    <section class="section">
                     </ul>
                 </div>
             </div>
-            <p style="text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-top:24px;">Вашей ниши нет в списке? <a href="#contact">Напишите</a> — скажу, на что смотреть именно у вас.</p>
+            <div class="niche-more-wrap"><button type="button" class="niche-more" id="nicheMore">Показать ещё 6 ниш</button></div>
+            <p style="text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-top:18px;">Вашей ниши нет в списке? <a href="#contact">Напишите</a> — скажу, на что смотреть именно у вас.</p>
+            <script>(function(){var b=document.getElementById('nicheMore');if(!b)return;b.addEventListener('click',function(){var g=document.querySelector('.niche-grid');if(g)g.classList.add('expanded');b.parentNode.style.display='none';});})();</script>
         </div>
     </section>`;
 
@@ -511,7 +513,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=12">
+    <link rel="stylesheet" href="/style.css?v=13">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}

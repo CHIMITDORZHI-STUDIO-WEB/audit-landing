@@ -973,3 +973,10 @@ a:hover { color: var(--accent-hover); }
 .expert-links-col a { display: block; font-size: 0.9rem; padding: 3px 0; color: var(--accent); }
 .expert-links-col a:hover { color: var(--accent-hover); text-decoration: underline; }
 @media (max-width: 700px) { .expert-links { grid-template-columns: 1fr; gap: 14px; } }
+
+/* Сворачивание ниш (показать ещё) */
+.niche-extra { display: none; }
+.niche-grid.expanded .niche-extra { display: block; }
+.niche-more-wrap { text-align: center; margin-top: 20px; }
+.niche-more { padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg-card); color: var(--accent); font-family: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.niche-more:hover { border-color: var(--accent); background: var(--bg-card-hover); }
