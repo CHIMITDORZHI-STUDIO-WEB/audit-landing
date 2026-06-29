@@ -27,18 +27,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    <link rel="preconnect" href="https://chimitdorzhi.tech" crossorigin>
-    <style>
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 100 900;
-            font-display: swap;
-            src: url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2-variations'),
-                 url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2');
-        }
-    </style>
-    <link rel="stylesheet" href="/style.css?v=3">
+    <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=6">
 
     <script type="application/ld+json">
     {
@@ -105,20 +95,16 @@
                     Защитим ваш сайт от штрафов до 500 млн ₽ за персональные данные. Отчёт за 1–3 дня, устранение нарушений под ключ.
                 </p>
 
-<nav class="audit-switcher" aria-label="Виды аудита">
-        <a href="/" class="audit-pill active" aria-current="page">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            <span>152-ФЗ Аудит</span>
-        </a>
-        <a href="/security/" class="audit-pill">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>Безопасность сайта</span>
-        </a>
-        <a href="/legal/" class="audit-pill">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 6c0 2 1.5 3 3 3s3-1 3-3l-3-6z"/><path d="M19 7l-3 6c0 2 1.5 3 3 3s3-1 3-3l-3-6z"/><path d="M8 21h8"/></svg>
-            <span>Юридический аудит</span>
-        </a>
-    </nav>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-accent btn-big">Получить 3 риска бесплатно →</a>
+                    <a href="#calc" class="btn btn-ghost btn-big">Узнать свой штраф</a>
+                </div>
+                <p class="hero-microtrust">Бесплатный разбор · отчёт за 12 часов · без обязательств · отвечаю лично</p>
+                <div class="trust-badges">
+                    <span class="trust-badge">Работаю по договору с ИП</span>
+                    <span class="trust-badge">Оплата по счёту</span>
+                    <span class="trust-badge">Закрывающие акты</span>
+                </div>
             </div>
             <aside class="hero-stats-card" aria-label="Ключевые цифры">
             <div class="hero-stats-card-item">
@@ -148,10 +134,6 @@
             <h2>Аудит сайта по 152-ФЗ</h2>
             <div class="simple">
                 <strong>Простыми словами:</strong> ваши клиенты оставляют на сайте имя, телефон, email или адрес — это «персональные данные». Закон №152-ФЗ требует чтобы вы их правильно собирали, хранили и защищали. Иначе — штрафы. Особенно после редакции закона в 2024 году: суммы выросли в 6 раз, а с 2025 действует оборотный штраф до 500 млн ₽.
-            </div>
-            <div class="hero-actions" style="margin-bottom:0;">
-                <a href="#contact" class="btn btn-accent btn-big">Написать мне →</a>
-                <a href="#pricing" class="btn btn-ghost btn-big">Тарифы</a>
             </div>
         </div>
     </section>
@@ -195,6 +177,42 @@
             </div>
         </div>
     </section>
+    <section class="section section-alt" id="calc">
+        <div class="container">
+            <span class="section-label">Калькулятор риска</span>
+            <h2>Узнайте свой потенциальный штраф за 30 секунд</h2>
+            <p class="section-sub">Три вопроса о вашем сайте. Приблизительная оценка по актуальной редакции 152-ФЗ — не юридическое заключение.</p>
+            <div class="calc">
+                <div class="calc-q" data-q="1">
+                    <p class="calc-q-title">1. Подавали уведомление в Роскомнадзор (реестр операторов ПД)?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">Да, мы в реестре</button>
+                        <button type="button" class="calc-opt" data-v="1">Нет / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-q" data-q="2">
+                    <p class="calc-q-title">2. На формах сайта есть галочка согласия на обработку ПД?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">Да, есть</button>
+                        <button type="button" class="calc-opt" data-v="1">Нет / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-q" data-q="3">
+                    <p class="calc-q-title">3. Где хранятся данные клиентов (база, CRM, формы)?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">На серверах в РФ</button>
+                        <button type="button" class="calc-opt" data-v="1">За рубежом / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-result" id="calcResult" hidden>
+                    <div class="calc-amount" id="calcAmount"></div>
+                    <div class="calc-level" id="calcLevel"></div>
+                    <p class="calc-note">Приблизительная оценка по статьям КоАП, не юридическое заключение. Точную картину и план исправлений даст аудит.</p>
+                    <a href="#contact" class="btn btn-accent btn-big" onclick="if(window.ym)ym(109281884,'reachGoal','calc_lead')">Получить точный разбор бесплатно →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="container">
@@ -202,22 +220,37 @@
             <h2>30+ пунктов в чек-листе</h2>
             <p class="section-sub">Полная проверка по актуальной редакции 152-ФЗ 2026. Каждый пункт — отдельная позиция в письменном отчёте.</p>
             <div class="checklist">
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Политика конфиденциальности</strong> — полнота, актуальность под 2026</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Согласие на обработку ПД</strong> — корректность чекбоксов на формах</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Cookie-баннер</strong> — активное согласие, категории, без предотметки</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Уведомление РКН</strong> — есть ли вы в реестре операторов</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Локализация данных</strong> — ст. 18 ч. 5 (хранение на серверах в РФ)</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Трансграничная передача</strong> — Google, AWS, иностранные сервисы</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Сроки хранения</strong> — указаны для каждой категории ПД</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Права клиентов</strong> — отзыв согласия, удаление данных</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Положение об обработке ПД</strong> — внутренний документ (ст. 18.1)</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Реагирование на инциденты</strong> — 24-часовое уведомление РКН</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>HTTPS и TLS</strong> — версии, заголовки безопасности</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Аналитика и пиксели</strong> — Yandex.Метрика, Google Analytics</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Рассылки и маркетинг</strong> — рекламные сообщения</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Контакт оператора</strong> — для запросов о ПД</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Биометрия</strong> — если собираете отпечатки/лицо</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Несовершеннолетние</strong> — ПД детей до 14 лет</span></div>
+        <div class="check-group">
+            <div class="check-group-title">Документы и согласия</div>
+            <div class="check-group-items">
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Политика конфиденциальности</strong> — полнота, актуальность под 2026</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Согласие на обработку ПД</strong> — корректность чекбоксов на формах</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Cookie-баннер</strong> — активное согласие, категории, без предотметки</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Положение об обработке ПД</strong> — внутренний документ (ст. 18.1)</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Сроки хранения</strong> — указаны для каждой категории ПД</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Права клиентов</strong> — отзыв согласия, удаление данных</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Контакт оператора</strong> — для запросов о ПД</span></div>
+            </div>
+        </div>
+        <div class="check-group">
+            <div class="check-group-title">Технический контур и хранение</div>
+            <div class="check-group-items">
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Уведомление РКН</strong> — есть ли вы в реестре операторов</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Локализация данных</strong> — ст. 18 ч. 5 (хранение на серверах в РФ)</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Трансграничная передача</strong> — Google, AWS, иностранные сервисы</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Реагирование на инциденты</strong> — 24-часовое уведомление РКН</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>HTTPS и TLS</strong> — версии, заголовки безопасности</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Аналитика и пиксели</strong> — Yandex.Метрика, Google Analytics</span></div>
+            </div>
+        </div>
+        <div class="check-group">
+            <div class="check-group-title">Маркетинг и особые данные</div>
+            <div class="check-group-items">
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Рассылки и маркетинг</strong> — рекламные сообщения, согласие на рекламу</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Биометрия</strong> — если собираете отпечатки/лицо</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Несовершеннолетние</strong> — ПД детей до 14 лет</span></div>
+            </div>
+        </div>
             </div>
             <p style="text-align:center;color:var(--text-secondary);font-size:0.88rem;margin-top:20px;">...и ещё 15+ пунктов в полном отчёте</p>
         </div>
@@ -272,6 +305,12 @@
         <div class="tier-cta"><a href="#contact" class="btn btn-ghost">Обсудить</a></div>
     </div>
             </div>
+            <div class="guarantee">
+                <span class="guarantee-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                </span>
+                <div><strong>Гарантия.</strong> Не найду ни одного нарушения — базовый аудит бесплатно. Отчёт точно в срок по тарифу или возврат денег.</div>
+            </div>
         </div>
     </section>
 
@@ -298,6 +337,27 @@
                 <p>Если выбрали тариф с исправлениями — устраняю проблемы. Передаю обновлённые документы и доступы.</p>
             </div>
         </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Кто проводит аудит</span>
+            <div class="expert">
+                <img class="expert-photo" src="https://chimitdorzhi.tech/hero-photo-600.webp" alt="Чимитдоржи Дарижапов" loading="lazy" width="220" height="280">
+                <div class="expert-body">
+                    <h2>Чимитдоржи Дарижапов</h2>
+                    <p class="expert-role">IT-специалист, 16+ лет опыта. Разработка, AI/ML и соответствие 152-ФЗ.</p>
+                    <p>Провожу аудит обработки персональных данных, готовлю документы и помогаю подать уведомление в Роскомнадзор. Работаю напрямую — вы общаетесь с тем, кто реально делает аудит, а не с менеджером юрфирмы-конвейера.</p>
+                    <ul class="expert-points">
+                        <li>Аудит сайтов и бизнес-процессов по 152-ФЗ и 572-ФЗ</li>
+                        <li>Исправления под ключ: политики, согласия, cookie, локализация данных</li>
+                        <li>По договору с ИП, оплата по счёту, закрывающие акты</li>
+                    </ul>
+                    <p class="expert-note">Это практическая помощь по приведению сайта в порядок, а не юридическая консультация.</p>
+                    <a href="#contact" class="btn btn-accent">Обсудить мой случай →</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -366,6 +426,7 @@
 
     <footer class="footer">
         <div class="container">
+            <p class="footer-audits">Другие аудиты: <a href="/security/">Безопасность сайта</a> · <a href="/legal/">Юридический аудит</a></p>
             <p><a href="https://chimitdorzhi.tech">← Все услуги на chimitdorzhi.tech</a></p>
             <p>
                 <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" onclick="if(window.ym)ym(109281884,'reachGoal','lead_tg')">Telegram</a> ·
@@ -392,7 +453,7 @@
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
         <div class="cookie-inner">
             <div class="cookie-header">
-                <span class="cookie-icon">🍪</span>
+                <span class="cookie-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
                 <h3>Мы используем cookie</h3>
             </div>
             <p class="cookie-text">Сайт использует cookie. Необходимые работают всегда — они нужны для интерфейса. Аналитика помогает улучшать сайт и включается только с вашего согласия. Подробнее — в <a href="https://chimitdorzhi.tech/privacy_policy.html" target="_blank" rel="noopener">политике</a>.</p>
@@ -440,6 +501,45 @@
                 save({ essential: true, analytics: false });
             });
         })();
+    </script>
+    <script>
+    (function(){
+        var answers = {};
+        var qs = document.querySelectorAll('.calc-q');
+        if(!qs.length) return;
+        qs.forEach(function(q){
+            q.querySelectorAll('.calc-opt').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    q.querySelectorAll('.calc-opt').forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    answers[q.getAttribute('data-q')] = parseInt(btn.getAttribute('data-v'), 10);
+                    if(Object.keys(answers).length === 3){ render(); }
+                });
+            });
+        });
+        function fmt(n){ return n.toLocaleString('ru-RU'); }
+        function render(){
+            var min = 0, max = 0;
+            if(answers['1']){ min += 100000; max += 300000; }
+            if(answers['2']){ min += 300000; max += 700000; }
+            if(answers['3']){ min += 1000000; max += 6000000; }
+            var res = document.getElementById('calcResult');
+            var amount = document.getElementById('calcAmount');
+            var level = document.getElementById('calcLevel');
+            if(max === 0){
+                amount.textContent = 'Базовые требования, похоже, закрыты';
+                level.textContent = 'Низкий риск — но детали проверит аудит';
+                level.className = 'calc-level calc-level-low';
+            } else {
+                amount.textContent = 'Потенциальный штраф: от ' + fmt(min) + ' до ' + fmt(max) + ' ₽';
+                if(max >= 1000000){ level.textContent = 'Высокий риск: возможна утечка и блокировка сайта'; level.className = 'calc-level calc-level-high'; }
+                else { level.textContent = 'Средний риск: формальные нарушения, которые легко закрыть'; level.className = 'calc-level calc-level-mid'; }
+            }
+            res.hidden = false;
+            res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if(window.ym) ym(109281884, 'reachGoal', 'calc_done');
+        }
+    })();
     </script>
 </body>
 

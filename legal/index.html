@@ -27,18 +27,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    <link rel="preconnect" href="https://chimitdorzhi.tech" crossorigin>
-    <style>
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 100 900;
-            font-display: swap;
-            src: url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2-variations'),
-                 url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2');
-        }
-    </style>
-    <link rel="stylesheet" href="/style.css?v=3">
+    <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=6">
 
     <script type="application/ld+json">
     {
@@ -105,20 +95,16 @@
                     Проверим юридические тексты на сайте — оферту, политику, рекламу, реквизиты. Тарифы от 10 000 ₽. Отчёт за 1–2 дня.
                 </p>
 
-<nav class="audit-switcher" aria-label="Виды аудита">
-        <a href="/" class="audit-pill">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            <span>152-ФЗ Аудит</span>
-        </a>
-        <a href="/security/" class="audit-pill">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>Безопасность сайта</span>
-        </a>
-        <a href="/legal/" class="audit-pill active" aria-current="page">
-            <svg class="tab-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 6c0 2 1.5 3 3 3s3-1 3-3l-3-6z"/><path d="M19 7l-3 6c0 2 1.5 3 3 3s3-1 3-3l-3-6z"/><path d="M8 21h8"/></svg>
-            <span>Юридический аудит</span>
-        </a>
-    </nav>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-accent btn-big">Получить 3 риска бесплатно →</a>
+                    <a href="#calc" class="btn btn-ghost btn-big">Узнать свой штраф</a>
+                </div>
+                <p class="hero-microtrust">Бесплатный разбор · отчёт за 12 часов · без обязательств · отвечаю лично</p>
+                <div class="trust-badges">
+                    <span class="trust-badge">Работаю по договору с ИП</span>
+                    <span class="trust-badge">Оплата по счёту</span>
+                    <span class="trust-badge">Закрывающие акты</span>
+                </div>
             </div>
             <aside class="hero-stats-card" aria-label="Ключевые цифры">
             <div class="hero-stats-card-item">
@@ -148,10 +134,6 @@
             <h2>Юридический аудит сайта</h2>
             <div class="simple">
                 <strong>Простыми словами:</strong> если на сайте есть кнопка «Купить» или «Заказать», то перечисленные условия — это «публичная оферта» (договор). Если в ней ошибка — клиент может потребовать деньги назад через суд. А Роспотребнадзор и ФАС могут оштрафовать за неправильную рекламу, отсутствие реквизитов или некорректные правила возврата. Проверяем все тексты.
-            </div>
-            <div class="hero-actions" style="margin-bottom:0;">
-                <a href="#contact" class="btn btn-accent btn-big">Написать мне →</a>
-                <a href="#pricing" class="btn btn-ghost btn-big">Тарифы</a>
             </div>
         </div>
     </section>
@@ -196,28 +178,29 @@
         </div>
     </section>
 
+
     <section class="section">
         <div class="container">
             <span class="section-label">Что проверяем</span>
             <h2>Все юр. тексты сайта</h2>
             <p class="section-sub">От оферты и политики до водяных знаков на фото в портфолио. Покажем где у вас слабые места.</p>
             <div class="checklist">
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Публичная оферта</strong> — соответствует ли товарам/услугам, защищает ли вас</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Пользовательское соглашение</strong> — правила пользования сайтом</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Политика возвратов</strong> — соответствие закону «О защите прав потребителей»</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Условия оплаты и доставки</strong> — прозрачность и полнота</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Реклама и обещания</strong> — соответствие 38-ФЗ (без «лучших в мире»)</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Обязательные реквизиты</strong> — ИНН, ОГРН, юр. адрес, телефон</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Описания товаров/услуг</strong> — точность, отсутствие вводящих в заблуждение фраз</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Картинки и фото</strong> — есть ли разрешение от авторов / стоковая лицензия</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Логотипы клиентов в портфолио</strong> — есть ли разрешение их использовать</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Отзывы клиентов</strong> — реальные ли, есть ли согласие на публикацию</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Цены и акции</strong> — корректность «скидок» и «акций»</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Гарантии</strong> — формулировки, сроки, условия</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Возрастная маркировка</strong> — 0+, 18+ где необходимо</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Маркировка рекламы</strong> — ОРД, токен erid для рекламы 2026</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Запрещённый контент</strong> — иноагенты, экстремизм</span></div>
-        <div class="check-item"><span class="check-mark">✓</span><span><strong>Защита авторского права</strong> — на ваш контент (тексты, фото, видео)</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Публичная оферта</strong> — соответствует ли товарам/услугам, защищает ли вас</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Пользовательское соглашение</strong> — правила пользования сайтом</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Политика возвратов</strong> — соответствие закону «О защите прав потребителей»</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Условия оплаты и доставки</strong> — прозрачность и полнота</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Реклама и обещания</strong> — соответствие 38-ФЗ (без «лучших в мире»)</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Обязательные реквизиты</strong> — ИНН, ОГРН, юр. адрес, телефон</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Описания товаров/услуг</strong> — точность, отсутствие вводящих в заблуждение фраз</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Картинки и фото</strong> — есть ли разрешение от авторов / стоковая лицензия</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Логотипы клиентов в портфолио</strong> — есть ли разрешение их использовать</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Отзывы клиентов</strong> — реальные ли, есть ли согласие на публикацию</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Цены и акции</strong> — корректность «скидок» и «акций»</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Гарантии</strong> — формулировки, сроки, условия</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Возрастная маркировка</strong> — 0+, 18+ где необходимо</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Маркировка рекламы</strong> — ОРД, токен erid для рекламы 2026</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Запрещённый контент</strong> — иноагенты, экстремизм</span></div>
+                <div class="check-item"><span class="check-mark">✓</span><span><strong>Защита авторского права</strong> — на ваш контент (тексты, фото, видео)</span></div>
             </div>
             
         </div>
@@ -275,6 +258,12 @@
         <div class="tier-cta"><a href="#contact" class="btn btn-ghost">Обсудить</a></div>
     </div>
             </div>
+            <div class="guarantee">
+                <span class="guarantee-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                </span>
+                <div><strong>Гарантия.</strong> Не найду ни одного нарушения — базовый аудит бесплатно. Отчёт точно в срок по тарифу или возврат денег.</div>
+            </div>
         </div>
     </section>
 
@@ -301,6 +290,27 @@
                 <p>Если выбрали тариф с исправлениями — устраняю проблемы. Передаю обновлённые документы и доступы.</p>
             </div>
         </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Кто проводит аудит</span>
+            <div class="expert">
+                <img class="expert-photo" src="https://chimitdorzhi.tech/hero-photo-600.webp" alt="Чимитдоржи Дарижапов" loading="lazy" width="220" height="280">
+                <div class="expert-body">
+                    <h2>Чимитдоржи Дарижапов</h2>
+                    <p class="expert-role">IT-специалист, 16+ лет опыта. Разработка, AI/ML и соответствие 152-ФЗ.</p>
+                    <p>Провожу аудит обработки персональных данных, готовлю документы и помогаю подать уведомление в Роскомнадзор. Работаю напрямую — вы общаетесь с тем, кто реально делает аудит, а не с менеджером юрфирмы-конвейера.</p>
+                    <ul class="expert-points">
+                        <li>Аудит сайтов и бизнес-процессов по 152-ФЗ и 572-ФЗ</li>
+                        <li>Исправления под ключ: политики, согласия, cookie, локализация данных</li>
+                        <li>По договору с ИП, оплата по счёту, закрывающие акты</li>
+                    </ul>
+                    <p class="expert-note">Это практическая помощь по приведению сайта в порядок, а не юридическая консультация.</p>
+                    <a href="#contact" class="btn btn-accent">Обсудить мой случай →</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -369,6 +379,7 @@
 
     <footer class="footer">
         <div class="container">
+            <p class="footer-audits">Другие аудиты: <a href="/">152-ФЗ Аудит</a> · <a href="/security/">Безопасность сайта</a></p>
             <p><a href="https://chimitdorzhi.tech">← Все услуги на chimitdorzhi.tech</a></p>
             <p>
                 <a href="https://t.me/chimitdorzhi" target="_blank" rel="noopener" onclick="if(window.ym)ym(109281884,'reachGoal','lead_tg')">Telegram</a> ·
@@ -395,7 +406,7 @@
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
         <div class="cookie-inner">
             <div class="cookie-header">
-                <span class="cookie-icon">🍪</span>
+                <span class="cookie-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
                 <h3>Мы используем cookie</h3>
             </div>
             <p class="cookie-text">Сайт использует cookie. Необходимые работают всегда — они нужны для интерфейса. Аналитика помогает улучшать сайт и включается только с вашего согласия. Подробнее — в <a href="https://chimitdorzhi.tech/privacy_policy.html" target="_blank" rel="noopener">политике</a>.</p>
@@ -444,6 +455,7 @@
             });
         })();
     </script>
+
 </body>
 
 </html>

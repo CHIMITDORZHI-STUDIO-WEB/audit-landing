@@ -7,7 +7,16 @@
     font-style: normal;
     font-weight: 200 800;
     font-display: swap;
-    src: url('https://chimitdorzhi.tech/assets/fonts/manrope-cyrillic.woff2') format('woff2');
+    src: url('/assets/fonts/manrope-cyrillic.woff2') format('woff2');
+    unicode-range: U+0400-04FF, U+0500-052F, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+    src: url('/assets/fonts/manrope-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212;
 }
 
 /* Палитра под главную chimitdorzhi.tech — кремово-кобальтовый минимализм */
@@ -130,7 +139,7 @@ a:hover { color: var(--accent-hover); }
 .btn-accent {
     background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
     color: #fff;
-    box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(30, 79, 214, 0.25);
 }
 .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--accent-glow); color: #fff; }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
@@ -170,8 +179,8 @@ a:hover { color: var(--accent-hover); }
     align-items: center;
     gap: 8px;
     padding: 7px 14px;
-    background: rgba(79, 140, 255, 0.1);
-    border: 1px solid rgba(79, 140, 255, 0.2);
+    background: rgba(30, 79, 214, 0.1);
+    border: 1px solid rgba(30, 79, 214, 0.2);
     border-radius: 100px;
     font-size: 0.78rem;
     font-weight: 700;
@@ -429,7 +438,7 @@ a:hover { color: var(--accent-hover); }
 .tier:hover { transform: translateY(-4px); border-color: var(--accent); }
 .tier-featured {
     border-color: var(--accent);
-    background: linear-gradient(180deg, rgba(79, 140, 255, 0.06), var(--bg-card));
+    background: linear-gradient(180deg, rgba(30, 79, 214, 0.06), var(--bg-card));
 }
 .tier-featured::before {
     content: 'Популярный';
@@ -568,7 +577,7 @@ a:hover { color: var(--accent-hover); }
     inset: -1px;
     border-radius: 33px;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(79, 140, 255, 0.3), transparent 50%, rgba(168, 85, 247, 0.3));
+    background: linear-gradient(135deg, rgba(30, 79, 214, 0.3), transparent 50%, rgba(23, 64, 181, 0.3));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -615,7 +624,7 @@ a:hover { color: var(--accent-hover); }
     left: 50%;
     transform: translateX(-50%);
     z-index: 90;
-    box-shadow: 0 12px 36px rgba(79, 140, 255, 0.4);
+    box-shadow: 0 12px 36px rgba(30, 79, 214, 0.4);
     display: none;
 }
 
@@ -667,7 +676,7 @@ a:hover { color: var(--accent-hover); }
 .tab-btn.active {
     background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
     color: #fff;
-    box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(30, 79, 214, 0.25);
 }
 .tab-btn-icon {
     width: 18px;
@@ -686,7 +695,7 @@ a:hover { color: var(--accent-hover); }
 .simple {
     margin: 18px 0 36px;
     padding: 20px 24px;
-    background: rgba(79, 140, 255, 0.06);
+    background: rgba(30, 79, 214, 0.06);
     border-left: 3px solid var(--accent);
     border-radius: 12px;
     font-size: 0.96rem;
@@ -815,7 +824,7 @@ a:hover { color: var(--accent-hover); }
 .audit-pill.active {
     background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
     color: #fff;
-    box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(30, 79, 214, 0.25);
     pointer-events: none;
 }
 
@@ -881,3 +890,54 @@ a:hover { color: var(--accent-hover); }
   .contact-buttons { flex-direction: column; align-items: stretch; }
   .contact-buttons .contact-btn { width: 100%; }
 }
+
+/* ===== Доработки для конверсии Директа ===== */
+
+/* Микро-доверие + бейджи под геройской кнопкой */
+.hero-microtrust { font-size: 0.9rem; color: var(--text-secondary); margin: 14px 0 16px; }
+.trust-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.trust-badge { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px; }
+
+/* Гарантия (risk-reversal) */
+.guarantee { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding: 18px 22px; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 14px; font-size: 0.95rem; color: var(--text); box-shadow: var(--shadow); }
+.guarantee-ico { color: var(--accent); flex: 0 0 auto; display: inline-flex; }
+.guarantee-ico svg { width: 26px; height: 26px; }
+
+/* Блок эксперта */
+.expert { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: start; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+.expert-photo { width: 220px; height: 280px; object-fit: cover; border-radius: 16px; }
+.expert-body h2 { margin: 0 0 6px; }
+.expert-role { font-weight: 700; color: var(--accent); margin-bottom: 14px; }
+.expert-body > p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+.expert-points { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 8px; }
+.expert-points li { position: relative; padding-left: 26px; color: var(--text); font-size: 0.95rem; }
+.expert-points li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+.expert-note { font-size: 0.85rem; font-style: italic; }
+@media (max-width: 700px) { .expert { grid-template-columns: 1fr; padding: 24px; } .expert-photo { width: 150px; height: 190px; } }
+
+/* Калькулятор риска штрафа */
+.calc { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.calc-q { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; }
+.calc-q-title { font-weight: 700; margin-bottom: 12px; }
+.calc-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+.calc-opt { flex: 1 1 160px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.calc-opt:hover { border-color: var(--accent); }
+.calc-opt.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.calc-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-align: center; box-shadow: var(--shadow); margin-top: 4px; }
+.calc-amount { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 800; margin-bottom: 10px; }
+.calc-level { display: inline-block; font-weight: 700; font-size: 0.9rem; padding: 6px 14px; border-radius: 100px; margin-bottom: 14px; }
+.calc-level-high { background: rgba(214,58,58,0.12); color: #b32020; }
+.calc-level-mid { background: rgba(196,125,18,0.14); color: #9a6210; }
+.calc-level-low { background: rgba(26,156,106,0.14); color: #137a52; }
+.calc-note { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 18px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+/* Группы чек-листа */
+.checklist:has(.check-group) { display: flex; flex-direction: column; gap: 24px; }
+.check-group-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; color: var(--text); }
+.check-group-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+
+/* Подвал: другие аудиты + cookie-иконка */
+.footer-audits { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 6px; }
+.footer-audits a { color: var(--text-secondary); }
+.footer-audits a:hover { color: var(--accent); }
+.cookie-icon { display: inline-flex; color: var(--accent); }

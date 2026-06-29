@@ -61,10 +61,22 @@ function painsHtml(pains) {
         </div>`).join('\n');
 }
 
+function checkItemHtml([title, body]) {
+  return `                <div class="check-item"><span class="check-mark">✓</span><span><strong>${esc(title)}</strong> — ${esc(body)}</span></div>`;
+}
 function checklistHtml(items) {
-  return items.map(([title, body]) =>
-    `        <div class="check-item"><span class="check-mark">✓</span><span><strong>${esc(title)}</strong> — ${esc(body)}</span></div>`
-  ).join('\n');
+  // Сгруппированный формат: [{group, items:[[t,b],...]}], либо плоский: [[t,b],...]
+  if (items.length && items[0] && items[0].group) {
+    return items.map(g =>
+      `        <div class="check-group">
+            <div class="check-group-title">${esc(g.group)}</div>
+            <div class="check-group-items">
+${g.items.map(checkItemHtml).join('\n')}
+            </div>
+        </div>`
+    ).join('\n');
+  }
+  return items.map(checkItemHtml).join('\n');
 }
 
 function tiersHtml(tiers) {
@@ -196,6 +208,114 @@ const COMMON_STEPS = `        <div class="steps">
             </div>
         </div>`;
 
+// --- Гарантия (risk-reversal) ---
+const GUARANTEE_HTML = `            <div class="guarantee">
+                <span class="guarantee-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                </span>
+                <div><strong>Гарантия.</strong> Не найду ни одного нарушения — базовый аудит бесплатно. Отчёт точно в срок по тарифу или возврат денег.</div>
+            </div>`;
+
+// --- Блок «Кто проводит аудит» (E-E-A-T + доверие) ---
+const EXPERT_HTML = `    <section class="section">
+        <div class="container">
+            <span class="section-label">Кто проводит аудит</span>
+            <div class="expert">
+                <img class="expert-photo" src="https://chimitdorzhi.tech/hero-photo-600.webp" alt="Чимитдоржи Дарижапов" loading="lazy" width="220" height="280">
+                <div class="expert-body">
+                    <h2>Чимитдоржи Дарижапов</h2>
+                    <p class="expert-role">IT-специалист, 16+ лет опыта. Разработка, AI/ML и соответствие 152-ФЗ.</p>
+                    <p>Провожу аудит обработки персональных данных, готовлю документы и помогаю подать уведомление в Роскомнадзор. Работаю напрямую — вы общаетесь с тем, кто реально делает аудит, а не с менеджером юрфирмы-конвейера.</p>
+                    <ul class="expert-points">
+                        <li>Аудит сайтов и бизнес-процессов по 152-ФЗ и 572-ФЗ</li>
+                        <li>Исправления под ключ: политики, согласия, cookie, локализация данных</li>
+                        <li>По договору с ИП, оплата по счёту, закрывающие акты</li>
+                    </ul>
+                    <p class="expert-note">Это практическая помощь по приведению сайта в порядок, а не юридическая консультация.</p>
+                    <a href="#contact" class="btn btn-accent">Обсудить мой случай →</a>
+                </div>
+            </div>
+        </div>
+    </section>`;
+
+// --- Калькулятор риска штрафа (только для 152-ФЗ) ---
+const CALC_HTML = `    <section class="section section-alt" id="calc">
+        <div class="container">
+            <span class="section-label">Калькулятор риска</span>
+            <h2>Узнайте свой потенциальный штраф за 30 секунд</h2>
+            <p class="section-sub">Три вопроса о вашем сайте. Приблизительная оценка по актуальной редакции 152-ФЗ — не юридическое заключение.</p>
+            <div class="calc">
+                <div class="calc-q" data-q="1">
+                    <p class="calc-q-title">1. Подавали уведомление в Роскомнадзор (реестр операторов ПД)?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">Да, мы в реестре</button>
+                        <button type="button" class="calc-opt" data-v="1">Нет / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-q" data-q="2">
+                    <p class="calc-q-title">2. На формах сайта есть галочка согласия на обработку ПД?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">Да, есть</button>
+                        <button type="button" class="calc-opt" data-v="1">Нет / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-q" data-q="3">
+                    <p class="calc-q-title">3. Где хранятся данные клиентов (база, CRM, формы)?</p>
+                    <div class="calc-opts">
+                        <button type="button" class="calc-opt" data-v="0">На серверах в РФ</button>
+                        <button type="button" class="calc-opt" data-v="1">За рубежом / не знаю</button>
+                    </div>
+                </div>
+                <div class="calc-result" id="calcResult" hidden>
+                    <div class="calc-amount" id="calcAmount"></div>
+                    <div class="calc-level" id="calcLevel"></div>
+                    <p class="calc-note">Приблизительная оценка по статьям КоАП, не юридическое заключение. Точную картину и план исправлений даст аудит.</p>
+                    <a href="#contact" class="btn btn-accent btn-big" onclick="if(window.ym)ym(109281884,'reachGoal','calc_lead')">Получить точный разбор бесплатно →</a>
+                </div>
+            </div>
+        </div>
+    </section>`;
+
+const CALC_SCRIPT = `    <script>
+    (function(){
+        var answers = {};
+        var qs = document.querySelectorAll('.calc-q');
+        if(!qs.length) return;
+        qs.forEach(function(q){
+            q.querySelectorAll('.calc-opt').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    q.querySelectorAll('.calc-opt').forEach(function(b){ b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    answers[q.getAttribute('data-q')] = parseInt(btn.getAttribute('data-v'), 10);
+                    if(Object.keys(answers).length === 3){ render(); }
+                });
+            });
+        });
+        function fmt(n){ return n.toLocaleString('ru-RU'); }
+        function render(){
+            var min = 0, max = 0;
+            if(answers['1']){ min += 100000; max += 300000; }
+            if(answers['2']){ min += 300000; max += 700000; }
+            if(answers['3']){ min += 1000000; max += 6000000; }
+            var res = document.getElementById('calcResult');
+            var amount = document.getElementById('calcAmount');
+            var level = document.getElementById('calcLevel');
+            if(max === 0){
+                amount.textContent = 'Базовые требования, похоже, закрыты';
+                level.textContent = 'Низкий риск — но детали проверит аудит';
+                level.className = 'calc-level calc-level-low';
+            } else {
+                amount.textContent = 'Потенциальный штраф: от ' + fmt(min) + ' до ' + fmt(max) + ' ₽';
+                if(max >= 1000000){ level.textContent = 'Высокий риск: возможна утечка и блокировка сайта'; level.className = 'calc-level calc-level-high'; }
+                else { level.textContent = 'Средний риск: формальные нарушения, которые легко закрыть'; level.className = 'calc-level calc-level-mid'; }
+            }
+            res.hidden = false;
+            res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if(window.ym) ym(109281884, 'reachGoal', 'calc_done');
+        }
+    })();
+    </script>`;
+
 function renderPage(key) {
   const p = pages[key];
   // Path to /style.css etc.: from index.html → 'style.css', from /security/index.html → '../style.css'
@@ -232,18 +352,8 @@ function renderPage(key) {
 
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
-    <link rel="preconnect" href="https://chimitdorzhi.tech" crossorigin>
-    <style>
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 100 900;
-            font-display: swap;
-            src: url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2-variations'),
-                 url('https://chimitdorzhi.tech/assets/fonts/InterVariable.woff2') format('woff2');
-        }
-    </style>
-    <link rel="stylesheet" href="/${isRoot ? 'style.css' : 'style.css'}?v=3">
+    <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css?v=6">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
@@ -276,7 +386,16 @@ ${COMMON_FAQ_SCHEMA}
                     ${esc(p.heroSubtitle)}
                 </p>
 
-${navSwitcher(key)}
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-accent btn-big">Получить 3 риска бесплатно →</a>
+                    <a href="#calc" class="btn btn-ghost btn-big">Узнать свой штраф</a>
+                </div>
+                <p class="hero-microtrust">Бесплатный разбор · отчёт за 12 часов · без обязательств · отвечаю лично</p>
+                <div class="trust-badges">
+                    <span class="trust-badge">Работаю по договору с ИП</span>
+                    <span class="trust-badge">Оплата по счёту</span>
+                    <span class="trust-badge">Закрывающие акты</span>
+                </div>
             </div>
             <aside class="hero-stats-card" aria-label="Ключевые цифры">
 ${statsCardHtml(p.heroStats)}
@@ -292,10 +411,6 @@ ${statsCardHtml(p.heroStats)}
             <div class="simple">
                 <strong>Простыми словами:</strong> ${p.simpleExplainer}
             </div>
-            <div class="hero-actions" style="margin-bottom:0;">
-                <a href="#contact" class="btn btn-accent btn-big">Написать мне →</a>
-                <a href="#pricing" class="btn btn-ghost btn-big">Тарифы</a>
-            </div>
         </div>
     </section>
 
@@ -309,6 +424,7 @@ ${painsHtml(p.pains)}
             </div>
         </div>
     </section>
+${key === 'fz152' ? CALC_HTML : ''}
 
     <section class="section">
         <div class="container">
@@ -330,6 +446,7 @@ ${checklistHtml(p.checklist)}
             <div class="pricing">
 ${tiersHtml(p.tiers)}
             </div>
+${GUARANTEE_HTML}
         </div>
     </section>
 
@@ -341,6 +458,8 @@ ${tiersHtml(p.tiers)}
 ${COMMON_STEPS}
         </div>
     </section>
+
+${EXPERT_HTML}
 
     <section class="section section-alt">
         <div class="container">
@@ -369,6 +488,7 @@ ${COMMON_FAQ_HTML}
 
     <footer class="footer">
         <div class="container">
+            <p class="footer-audits">Другие аудиты: ${ORDER.filter(k => k !== key).map(k => `<a href="${pages[k].slug}">${esc(pages[k].label)}</a>`).join(' · ')}</p>
             <p><a href="https://chimitdorzhi.tech">← Все услуги на chimitdorzhi.tech</a></p>
             <p>
                 <a href="${CONTACTS.tg.href}" target="_blank" rel="noopener" ${ymGoal(CONTACTS.tg.goal)}>Telegram</a> ·
@@ -395,7 +515,7 @@ ${COMMON_FAQ_HTML}
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
         <div class="cookie-inner">
             <div class="cookie-header">
-                <span class="cookie-icon">🍪</span>
+                <span class="cookie-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
                 <h3>Мы используем cookie</h3>
             </div>
             <p class="cookie-text">Сайт использует cookie. Необходимые работают всегда — они нужны для интерфейса. Аналитика помогает улучшать сайт и включается только с вашего согласия. Подробнее — в <a href="https://chimitdorzhi.tech/privacy_policy.html" target="_blank" rel="noopener">политике</a>.</p>
@@ -444,6 +564,7 @@ ${COMMON_FAQ_HTML}
             });
         })();
     </script>
+${key === 'fz152' ? CALC_SCRIPT : ''}
 </body>
 
 </html>
