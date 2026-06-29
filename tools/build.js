@@ -225,7 +225,7 @@ const EXPERT_HTML = `    <section class="section">
                 <div class="expert-body">
                     <h2>Чимитдоржи Дарижапов</h2>
                     <p class="expert-role">IT-специалист, 16+ лет опыта. Разработка, AI/ML и соответствие 152-ФЗ.</p>
-                    <p>Провожу аудит обработки персональных данных, готовлю документы и помогаю подать уведомление в Роскомнадзор. Работаю напрямую — вы общаетесь с тем, кто реально делает аудит, а не с менеджером юрфирмы-конвейера.</p>
+                    <p>За плечами — <strong>100+ проверенных и приведённых в порядок сайтов</strong>. Провожу аудит обработки персональных данных, готовлю документы и помогаю подать уведомление в Роскомнадзор. Работаю напрямую — вы общаетесь с тем, кто реально делает аудит, а не с менеджером юрфирмы-конвейера.</p>
                     <ul class="expert-points">
                         <li>Аудит сайтов и бизнес-процессов по 152-ФЗ и 572-ФЗ</li>
                         <li>Исправления под ключ: политики, согласия, cookie, локализация данных</li>
@@ -316,6 +316,66 @@ const CALC_SCRIPT = `    <script>
     })();
     </script>`;
 
+// --- Разбор типовых нарушений по нишам (доказательство экспертизы вместо отзывов) ---
+const NICHE_HTML = `    <section class="section">
+        <div class="container">
+            <span class="section-label">Опыт по нишам</span>
+            <h2>Что обычно находим в разных нишах</h2>
+            <p class="section-sub">Закон один для всех, но типовые нарушения зависят от того, какие данные вы собираете. Вот что встречается чаще всего — за 100+ проверенных сайтов картина повторяется.</p>
+            <div class="niche-grid">
+                <div class="niche-card">
+                    <div class="niche-title">Доставка еды и кафе</div>
+                    <ul>
+                        <li>Форма заказа без галочки согласия на обработку ПД</li>
+                        <li>Адреса и телефоны уходят в стороннюю CRM/сервис доставки без договора поручения</li>
+                        <li>Акции и рассылки без согласия на рекламу (ст. 18 38-ФЗ)</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Медицина и клиники</div>
+                    <ul>
+                        <li>Данные о здоровье — особая категория (ст. 10), нужно усиленное письменное согласие</li>
+                        <li>Онлайн-запись хранит ПД пациентов без правильного основания</li>
+                        <li>Передача данных в лабораторию или другому врачу без оформления</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Образование и детские центры</div>
+                    <ul>
+                        <li>Данные несовершеннолетних — нужно согласие законного представителя</li>
+                        <li>Фото детей на сайте и в соцсетях без согласия родителей</li>
+                        <li>CRM или платформа обучения на иностранном сервере — нарушение локализации</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Госучреждения и муниципалитеты</div>
+                    <ul>
+                        <li>Обращения граждан — ПД под усиленным контролем РКН и прокуратуры</li>
+                        <li>Формы обратной связи и приёма без корректного согласия</li>
+                        <li>Размещение данных на несертифицированной инфраструктуре</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Интернет-магазины</div>
+                    <ul>
+                        <li>Cookie и аналитика без активного согласия (баннер с предотметкой)</li>
+                        <li>Передача в СДЭК, Почту, платёжные системы без договора поручения</li>
+                        <li>Иностранные пиксели и счётчики без оформленной трансграничной передачи</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Услуги с записью (салоны, юристы, репетиторы)</div>
+                    <ul>
+                        <li>Онлайн-запись собирает ПД, а политики и согласия нет</li>
+                        <li>Не подано уведомление в реестр операторов РКН</li>
+                        <li>Рассылки и напоминания в мессенджерах без согласия</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-top:24px;">Вашей ниши нет в списке? <a href="#contact">Напишите</a> — скажу, на что смотреть именно у вас.</p>
+        </div>
+    </section>`;
+
 // --- Лид-форма → Telegram-бот (отдельный бот, токен в клиенте, риск принят) ---
 const LEAD_TOKEN = '8672193242:AAHz2EQqGI2RMNxl-6YS-LI8QV0E8icKfTY';
 const LEAD_CHAT = '1703001728';
@@ -386,7 +446,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=7">
+    <link rel="stylesheet" href="/style.css?v=8">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
@@ -470,6 +530,8 @@ ${checklistHtml(p.checklist)}
             ${p.checklistFooter ? `<p style="text-align:center;color:var(--text-secondary);font-size:0.88rem;margin-top:20px;">${esc(p.checklistFooter)}</p>` : ''}
         </div>
     </section>
+
+${key === 'fz152' ? NICHE_HTML : ''}
 
     <section id="pricing" class="section section-alt">
         <div class="container">

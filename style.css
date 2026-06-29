@@ -952,3 +952,11 @@ a:hover { color: var(--accent-hover); }
 .lead-status.ok { color: var(--success); }
 .lead-status.err { color: var(--danger); }
 .contact-or { font-size: 0.9rem; color: var(--text-secondary); margin: 18px 0 12px; }
+
+/* Разбор по нишам */
+.niche-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.niche-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 14px; padding: 22px 24px; box-shadow: var(--shadow); }
+.niche-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; }
+.niche-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.niche-card li { position: relative; padding-left: 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.45; }
+.niche-card li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
