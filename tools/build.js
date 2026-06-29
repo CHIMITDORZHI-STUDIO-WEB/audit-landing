@@ -371,6 +371,54 @@ const NICHE_HTML = `    <section class="section">
                         <li>Рассылки и напоминания в мессенджерах без согласия</li>
                     </ul>
                 </div>
+                <div class="niche-card">
+                    <div class="niche-title">Фитнес-клубы и спортшколы</div>
+                    <ul>
+                        <li>Вход по лицу или отпечатку — это биометрия: нужны ЕБС и отдельное согласие</li>
+                        <li>Данные детей в секциях — согласие законного представителя</li>
+                        <li>Абонементы и заморозки хранят ПД без основания и сроков</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Туризм: турагентства и отели</div>
+                    <ul>
+                        <li>Сканы паспортов лежат в почте и мессенджерах без защиты</li>
+                        <li>Брони через зарубежные системы — трансграничная передача без оформления</li>
+                        <li>Рассылки горящих туров без согласия на рекламу</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Недвижимость: агентства и застройщики</div>
+                    <ul>
+                        <li>Паспорта и копии документов уходят в банк под ипотеку без оформления</li>
+                        <li>Заявки с сайта собирают ПД, а политики и согласия нет</li>
+                        <li>Базы клиентов в Excel и CRM без защиты и сроков хранения</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">HR, рекрутинг, подбор персонала</div>
+                    <ul>
+                        <li>Резюме соискателей — масса ПД, часто без согласия на обработку</li>
+                        <li>Данные хранятся годами после отказа без законного основания</li>
+                        <li>Передача анкет заказчику без оформления поручения</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">Автошколы и автосервисы</div>
+                    <ul>
+                        <li>Данные учеников передаются в ГИБДД без корректного основания</li>
+                        <li>Онлайн-запись и история обслуживания хранят ПД клиентов</li>
+                        <li>Нет уведомления в реестр операторов РКН</li>
+                    </ul>
+                </div>
+                <div class="niche-card">
+                    <div class="niche-title">ЖКХ: УК, ТСЖ и СНТ</div>
+                    <ul>
+                        <li>Публикация списков должников с ФИО и адресами — частое нарушение</li>
+                        <li>Данные жильцов и обращения без согласия и защиты</li>
+                        <li>Передача данных подрядчикам без договора поручения</li>
+                    </ul>
+                </div>
             </div>
             <p style="text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-top:24px;">Вашей ниши нет в списке? <a href="#contact">Напишите</a> — скажу, на что смотреть именно у вас.</p>
         </div>
@@ -446,7 +494,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=8">
+    <link rel="stylesheet" href="/style.css?v=9">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
