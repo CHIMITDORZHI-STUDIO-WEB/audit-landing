@@ -513,7 +513,7 @@ function renderPage(key) {
     <link rel="icon" href="/${isRoot ? 'favicon.svg' : 'favicon.svg'}" type="image/svg+xml">
 
     <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/style.css?v=13">
+    <link rel="stylesheet" href="/style.css?v=14">
 
 ${serviceSchema(p)}
 ${COMMON_FAQ_SCHEMA}
@@ -552,7 +552,7 @@ ${COMMON_FAQ_SCHEMA}
                 </div>
                 <p class="hero-microtrust">Бесплатный разбор · отчёт за 12 часов · без обязательств · отвечаю лично</p>
                 <div class="trust-badges">
-                    <span class="trust-badge">Работаю по договору с ИП</span>
+                    <span class="trust-badge">Договор с ИП</span>
                     <span class="trust-badge">Оплата по счёту</span>
                     <span class="trust-badge">Закрывающие акты</span>
                 </div>

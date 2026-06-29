@@ -287,8 +287,9 @@ a:hover { color: var(--accent-hover); }
 @media (max-width: 900px) {
     .hero-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 44px;
     }
+    .trust-badges { margin-bottom: 4px; }
     .hero-stats-card {
         position: static;
         display: grid;
